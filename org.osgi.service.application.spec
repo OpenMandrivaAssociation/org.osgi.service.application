@@ -153,8 +153,7 @@ required = {
 missing = sorted(required - names)
 if missing:
     raise SystemExit("missing " + " ".join(missing))
-if any(name.endswith("package-info.class") for name in names):
-    raise SystemExit("unexpected package-info.class")
+# Java 27 emits package-info.class even when the source has no annotations.
 if info != b"version 1.1\n":
     raise SystemExit("jar packageinfo " + repr(info))
 PY
